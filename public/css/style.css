@@ -1,0 +1,53 @@
+/* Reset CSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+}
+
+/* Sidebar styling */
+/* Sidebar Section */
+.sidebar {
+    position: sticky;
+    top: 0;
+    padding-top: 20px;
+    background-color: #f8f9fa; /* Ganti dengan warna latar belakang yang Anda inginkan */
+}
+
+.sidebar ul.nav.flex-column {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.sidebar .nav-link {
+    padding: 10px 15px;
+    text-decoration: none;
+    color: #000; /* Ganti dengan warna teks yang Anda inginkan */
+    transition: background-color 0.3s;
+}
+
+.sidebar .nav-link.active {
+    background-color: #007bff; /* Ganti dengan warna aktif yang Anda inginkan */
+    color: #fff; /* Warna teks untuk tautan aktif */
+}
+
+.sidebar .nav-link:hover {
+    background-color: #007bff; /* Warna latar belakang saat hover */
+    color: #fff; /* Warna teks saat hover */
+}
+
+.sidebar .nav-link i {
+    margin-right: 10px;
+}
+
+/* Membuat ikon lebih besar jika diperlukan */
+.sidebar .nav-link i.bi {
+    font-size: 1.25rem; /* Ukuran ikon */
+}
+
+

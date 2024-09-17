@@ -10,6 +10,15 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
+    public function isAdmin()
+    {
+        return $this->role === 'admin'; // Adjust this condition based on your user role implementation.
+    }
+    public function petugas()
+    {
+        // Mengambil semua pengguna dengan peran "petugas"
+        return $this->where('name','role', 'PETUGAS');
+    }
     use HasApiTokens, HasFactory, Notifiable;
 
     /**
@@ -21,6 +30,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
+        'is_active',
     ];
 
     /**

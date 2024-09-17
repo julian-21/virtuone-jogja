@@ -1,0 +1,368 @@
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@300&display=swap");
+
+* {
+    font-family: "Oswald", sans-serif;
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+    scroll-padding-top: 2rem;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Oswald', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    letter-spacing: 0.5px;
+    background-color: #f4f4f4; /* Warna Abu-abu Terang sebagai latar belakang */
+}
+
+:root {
+    --container-color: #f7f7f7; /* Warna Abu-abu Muda */
+    --second-color: #ff6f61; /* Warna Merah Jambu */
+    --text-color: #333333; /* Warna Teks Hitam */
+    --bg-color: #3a506b; /* Warna Biru Tua */
+    --bg2-color: #f9f9f9; /* Warna Putih Kusam */
+}
+
+::selection {
+    color: var(--bg-color);
+    background: var(--second-color);
+}
+
+a {
+    text-decoration: none;
+}
+
+li {
+    list-style: none;
+}
+
+img {
+    width: 100%;
+}
+
+.additional-image {
+    width: 50px; /* Adjust the width as needed */
+    height: auto; /* Maintain the aspect ratio */
+    margin-right: 25px; /* Adjust the margin as needed */
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+img.post-img {
+    width: 100%;
+}
+
+img.headerlogo {
+    width: 20%;
+}
+
+img.kanreglogo {
+    width: 20%;
+}
+
+section {
+    padding: 3rem 0 2rem;
+}
+
+.container {
+    max-width: 1068px;
+    margin: auto;
+    width: 100%;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 200;
+}
+
+.header-images {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.headerlogo {
+    width: 50px;
+    height: auto;
+}
+
+header.shadow {
+    background: var(--bg2-color);
+    box-shadow: 0 1px 4px hsl(0 4% 14% / 10%);
+    transition: 0.4s;
+}
+
+header.shadow .logo {
+    color: var(--text-color);
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 0;
+}
+
+.logo {
+    font-size: 3rem;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.logo span {
+    color: var(--second-color);
+}
+
+.logoheader {
+    float: right;
+    overflow: hidden;
+    height: 70px;
+    padding-top: 35px;
+    align-items: center;
+}
+
+.logoheader:hover {
+    background: hsl(24, 98%, 58%);
+    transition: 0.3s;
+}
+
+.home {
+    width: 100%;
+    min-height: 440px;
+    background: var(--container-color);
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+
+.home-text {
+    color: var(--text-color);
+    text-align: center;
+}
+
+.home-title {
+    font-size: 3.5rem;
+}
+
+.home-subtitle {
+    font-size: 2rem;
+    font-weight: 400;
+}
+
+.post-filter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 1.5rem;
+    margin-top: 2rem !important;
+}
+
+.filter-item {
+    font-size: 1.2rem;
+    font-weight: 500;
+    cursor: pointer;
+    color: var(--text-color);
+    transition: color 0.3s ease;
+}
+
+.filter-item:hover {
+    color: #ff6f61;
+}
+
+.active-filter {
+    background: #ff6f61;
+    color: #ffffff;
+    padding: 4px 10px;
+    border-radius: 4px;
+}
+
+.post {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, auto));
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.post-box {
+    background-color: white;
+    border: 1px solid #e0e0e0;
+    padding: 20px;
+    margin: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease, border-radius 0.3s ease;
+    border-radius: 10px;
+}
+
+.post-box:hover {
+    transform: scale(1.05);
+    border-radius: 20px;
+}
+
+.post-box {
+    box-shadow: 0 4px 14px hsl(355deg 25% 15% / 10%);
+}
+
+.post-img {
+    height: 200px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 0.5rem;
+}
+
+.post-title {
+    font-size: 1rem;
+    font-weight: 300;
+    color: #000000;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+footer {
+    background-color: #3081d0;
+    color: #fff;
+    padding: 20px 0;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-logo {
+    font-size: 1.5rem;
+}
+
+.footer-logo a {
+    color: #fff;
+}
+
+.footer-links ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.footer-links a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.footer-social {
+    font-size: 1.5rem;
+}
+
+.footer-bottom {
+    margin-top: 20px;
+    text-align: center;
+}
+
+@media (max-width: 1060px) {
+    .container {
+        max-width: 0 auto;
+        width: 95%;
+    }
+    .home-text {
+        width: 100%;
+    }
+}
+
+@media (max-width: 900px) {
+    .nav .logo {
+        padding: 16px 0;
+        font-size: 40px;
+    }
+}
+
+@media (max-width: 800px) {
+    .nav .logo {
+        padding: 14px 0;
+        font-size: 30px;
+    }
+    .post-container {
+        max-width: 0 auto;
+        width: 95%;
+    }
+    .additional-image {
+        width: 35px; /* Adjust the width as needed */
+        height: auto; /* Maintain the aspect ratio */
+        margin-right: 20px; /* Adjust the margin as needed */
+    }
+}
+
+@media (max-width: 768px) {
+    .nav {
+        padding: 10px 0;
+    }
+    section {
+        padding: 2rem 0;
+    }
+    .header-content {
+        margin-top: 3rem !important;
+    }
+    .home {
+        min-height: 380px;
+    }
+    .home-title {
+        font-size: 3rem;
+    }
+    .header-title {
+        font-size: 2rem;
+    }
+    .footer-container {
+        flex-direction: column;
+    }
+
+    .footer-links ul {
+        margin-top: 10px;
+    }
+    body {
+        font-size: 14px;
+    }
+    .additional-image {
+        width: 35px; /* Adjust the width as needed */
+        height: auto; /* Maintain the aspect ratio */
+        margin-right: 15px; /* Adjust the margin as needed */
+    }
+}
+
+@media (max-width: 570px) {
+    .nav {
+        padding: 8px 0;
+    }
+    .nav .logo {
+        font-size: 20px;
+    }
+    section {
+        padding: 1.7rem 0;
+    }
+    .header-content {
+        margin-top: 2rem !important;
+    }
+    .home {
+        min-height: 300px;
+    }
+    .home-title {
+        font-size: 2rem;
+    }
+    .header-title {
+        font-size: 1.5rem;
+    }
+    .additional-image {
+        width: 25px; /* Adjust the width as needed */
+        height: auto; /* Maintain the aspect ratio */
+        margin-right: 10px; /* Adjust the margin as needed */
+    }
+}

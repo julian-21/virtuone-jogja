@@ -1,113 +1,189 @@
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Isi Formulir</div>
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulir Pendaftaran Layanan Virtual Manajemen ASN</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
+    <link rel="icon" href="{{ asset('images/logokanreg1.png') }}" type="image/x-icon">
+    <style>
+        /* Tambahkan gaya CSS berikut */
+        .required::after {
+            content: "*";
+            color: red;
+            margin-left: 5px;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="card border-info mb-3">
+            <img src="{{ asset('images/banner.png') }}" class="card-img-top" alt="">
+            <div class="card-body">
+                <h1 class="card-title text-center">Layanan Konsultasi Virtual</h1>
+                <p class="card-text text-center">Layanan ini digunakan untuk melakukan konsultasi yang membutuhkan tatap muka melalui teleconference (misal aplikasi Zoom) dikarenakan kompleksitas permasalahan yang akan ditanyakan. Untuk permasalahan biasa, dapat dikonsultasikan melalui fitur konsultasi kepegawaian yang di <a href="https://yogyakarta.bkn.go.id/konsultasi-kepegawaian" target="_blank">web Kanreg I BKN Yogyakarta</a>.</p>
                 <div class="card-body">
                     @if(session('success'))
                     <div class="alert alert-success">
                         {{ session('success') }}
                     </div>
                     @endif
-
-                    <form action="{{ route('formulir.store') }}" method="POST">
-                        @csrf
-
-                        <!-- Nama -->
-                        <div class="form-group">
-                            <label for="nama">Nama</label>
-                            <input type="text" name="nama" id="nama" class="form-control" required>
+                    <?php
+                    if (config('global.buka_konsultasi')) {
+                    ?>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <!-- Tombol untuk mengisi konsultasi -->
+                                <div class="card h-100">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Isi Formulir</h5>
+                                        <p class="card-text">Klik tombol di bawah untuk mengisi formulir konsultasi.</p><br>
+                                        <a href="#formulir-konsultasi" class="btn btn-primary">Isi Konsultasi</a>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php
+                    } //if ($is_buka) {
+                        ?>
+                        <div class="col-md-6">
+                            <!-- Tombol untuk mengecek kode -->
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <h5 class="card-title">Cek Info</h5>
+                                    <p class="card-text">Klik tombol di bawah untuk melakukan pengecekan info dengan memasukkan kode yang telah diberi.</p>
+                                    <a href="{{ route('cek-kode') }}" class="btn btn-success">Cek Info</a>
+                                </div>
+                            </div>
+                        </div>
                         </div>
 
-                        <!-- NIP -->
-                        <div class="form-group">
-                            <label for="nip">NIP</label>
-                            <input type="text" name="nip" id="nip" class="form-control" required>
-                        </div>
 
-                        <!-- Jabatan -->
-                        <div class="form-group">
-                            <label for="jabatan">Jabatan</label>
-                            <input type="text" name="jabatan" id="jabatan" class="form-control" required>
-                        </div>
+                        <br>
+                        <?php
+                        if (config('global.buka_konsultasi')) {
+                        ?>
+                            <div id="alert-container">
+                                <form action="{{ route('formulir.store') }}" method="POST" id="formulir-konsultasi" enctype="multipart/form-data">
+                                    <h2 class="card-title text-center">Formulir Konsultasi</h2>
+                                    @csrf
+                                    <!-- Nama -->
+                                    <div class="form-group">
+                                        <label for="nama">Nama<span class="required"></span></label>
+                                        <input type="text" name="nama" id="nama" class="form-control" required>
+                                        <small class="text-muted">Isikan Nama Anda.</small>
+                                    </div>
 
-                        <!-- Nama Instansi -->
-                        <div class="form-group">
-                            <label for="namainstansi">Nama Instansi</label>
-                            <input type="text" name="namainstansi" id="namainstansi" class="form-control" required>
-                        </div>
+                                    <!-- NIP -->
+                                    <div class="form-group">
+                                        <label for="nip">NIP/NIK</label>
+                                        <input type="text" name="nip" id="nip" class="form-control" maxlength="18" minlength="16" required>
+                                        <small class="text-muted">Isikan Nomor NIP/NIK Anda.</small>
+                                    </div>
 
-                        <!-- Nomor HP -->
-                        <div class="form-group">
-                            <label for="nomorhp">Nomor HP</label>
-                            <input type="text" name="nomorhp" id="nomorhp" class="form-control" required>
-                        </div>
+                                    <!-- Jabatan -->
+                                    <div class="form-group">
+                                        <label for="jabatan">Jabatan<span class="required"></span></label>
+                                        <input type="text" name="jabatan" id="jabatan" class="form-control" required>
+                                        <small class="text-muted">Apabila bukan ASN silahkan Anda isi -</small>
+                                    </div>
 
-                        <!-- Email -->
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" name="email" id="email" class="form-control" required>
-                        </div>
+                                    <!-- Nama Instansi -->
+                                    <div class="form-group">
+                                        <label for="unitkerja">Nama Instansi<span class="required"></span></label>
+                                        <select name="unitkerja" id="unitkerja" class="form-control select2" required>
+                                            <option value="" disabled selected hidden>Silakan pilih instansi ...</option>
+                                            @foreach ($unitkerjaData as $instansi)
+                                            <option value="{{ $instansi->unitkerja_kode }}">{{ $instansi->unitkerja }}</option>
+                                            @endforeach
+                                        </select>
+                                        <small class="text-muted">Apabila bukan ASN silahkan Anda pilih opsi Perorangan</small>
+                                    </div>
 
-                        <!-- Keluhan -->
-                        <div class="form-group">
-                            <label for="keluhan">Keluhan</label>
-                            <textarea name="keluhan" id="keluhan" class="form-control" rows="4" required></textarea>
-                        </div>
+                                    <!-- Nomor HP -->
+                                    <div class="form-group">
+                                        <label for="nomorhp">Nomor HP<span class="required"></span></label>
+                                        <input type="text" name="nomorhp" id="nomorhp" class="form-control" maxlength="13" minlength="10" required>
+                                        <small class="text-muted">Isikan Nomor HP yang dapat di hubungi melalui Whatsapp.</small>
+                                    </div>
 
-                        <!-- Tanggal -->
-                        <div class="form-group">
-                            <label for="tanggal">Tanggal</label>
-                            <input type="date" name="tanggal" id="tanggal" class="form-control" required>
-                        </div>
+                                    <!-- Email -->
+                                    <div class="form-group">
+                                        <label for="email">Email</label>
+                                        <input type="email" name="email" id="email" class="form-control" autocomplete="email" required>
+                                        <small class="text-muted">Isikan Email Anda.</small>
+                                    </div>
 
-                        <!-- Jam -->
-                        <div class="form-group">
-                            <label for="jam">Pilih Jam (Maksimal 3)</label>
-                            <select name="jam[]" class="form-control" multiple>
-                                @foreach ($jams as $jam)
-                                <option value="{{ $jam->id }}">{{ $jam->jam }}</option>
-                                @endforeach
-                            </select>
-                            @error('jam')
-                            <div class="alert alert-danger">{{ $message }}</div>
-                            @enderror
-                        </div>
+                                    <!-- Keluhan -->
+                                    <div class="form-group">
+                                        <label for="keluhan">Permasalahan yang Ditanyakan<span class="required"></span></label>
+                                        <textarea name="keluhan" id="keluhan" class="form-control" rows="4" required></textarea>
+                                        <small class="text-muted">Isikan Permasalahan yang akan ditanyakan secara rinci.</small>
+                                    </div>
 
-                        <!-- Tombol Simpan -->
-                        <button type="submit" class="btn btn-primary">Simpan</button>
-                        <!-- Tampilkan kode unik jika ada -->
-                        @if(session('kode_unik'))
-                        <div class="mt-3">
-                            Kode Zoom Anda adalah: {{ session('kode_unik') }}
-                        </div>
-                        @endif
-                    </form>
-                    <script>
-                        document.addEventListener('DOMContentLoaded', function() {
-                            const selectJam = document.getElementById('select-jam');
-                            const maxSelections = 3;
+                                    <!-- Tanggal -->
+                                    <div class="form-group">
+                                        <label for="tanggal">Tanggal<span class="required"></span></label>
+                                        <input type="date" name="tanggal" id="tanggal" class="form-control" required>
+                                        <small class="text-muted">Kepastian waktu/tanggal konsultasi akan diinfokan oleh pihak BKN.
+                                            Silahkan cek berkala melalui fitur <a href="{{ route('cek-kode') }}">Cek Info</a> diatas</small>
+                                    </div>
 
-                            selectJam.addEventListener('change', function() {
-                                const selectedOptions = Array.from(selectJam.selectedOptions);
-                                if (selectedOptions.length > maxSelections) {
-                                    alert('Anda hanya dapat memilih maksimal 3 jam.');
-                                    selectedOptions.forEach(option => {
-                                        if (!option.selected) {
-                                            option.disabled = true;
-                                        }
-                                    });
-                                } else {
-                                    selectedOptions.forEach(option => {
-                                        option.disabled = false;
-                                    });
-                                }
-                            });
-                        });
-                    </script>
+                                    <!-- Jam -->
+                                    <div class="form-group">
+                                        <label for="jam">Jam Konsultasi<span class="required"></span></label>
+                                        <select name="jam[]" id="jam" class="form-control" required>
+                                            <option value="" hidden selected disabled>Pilih jam konsultasi ...</option>
+                                            @foreach ($jams as $jam)
+                                            <option value="{{ $jam->id }}">{{ $jam->jam }}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('jam')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+                                        <small class="text-muted">Kepastian waktu/tanggal konsultasi akan diinfokan oleh pihak BKN.
+                                            Silahkan cek berkala melalui fitur <a href="{{ route('cek-kode') }}">Cek Info</a> diatas</small>
+                                    </div>
+                                    <div class="form-group mt-4 mb-4">
+                                        <div class="captcha">
+                                            <span>{!! captcha_img() !!}</span>
+                                            <button type="button" class="btn btn-danger" class="reload" id="reload">
+                                                &#x21bb;
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="form-group mb-4">
+                                        <input id="captcha" type="text" class="form-control" placeholder="Enter Captcha" name="captcha">
+                                    </div>
+                            </div>
+                            <br>
+
+                            <!-- Tombol Simpan -->
+                            <button type="submit" class="btn btn-primary">Daftar</button>
+                            <!-- Tampilkan kode unik jika ada -->
+                            @if(session('kode_unik'))
+                            <div class="mt-3">
+                                Kode Zoom Anda adalah: {{ session('kode_unik') }}
+                            </div>
+                            @endif
+                            </form>
                 </div>
+            <?php
+                        } //if ($is_buka) {
+            ?>
+            <script src="{{ asset('js/create.js') }}"></script>
             </div>
         </div>
     </div>
-</div>
+    </div>
+</body>
+
+</html>

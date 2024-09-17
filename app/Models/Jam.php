@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Jam extends Model
 {
+    protected $table = 'jams';
     protected $fillable = ['jam'];
 
     public function formulirs()
